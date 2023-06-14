@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const cors = require('cors');
 
 const pool = require('./config/db.config');
@@ -26,7 +27,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-app.use('/images', express.static('pictures'))
+app.use('/images', express.static(path.join(__dirname, 'pictures')));
 
 app.use('/api/about-details' ,aboutDetailsRouter)
 app.use('/api/employee-details', employeeRouter);
